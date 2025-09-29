@@ -189,6 +189,12 @@ const JoinCard = ({ game, facility }: { game: Game, facility: Facility | undefin
                 )
             }
 
+            <Link to={`/play/${game.id}/lobby`} className='w-full'>
+                <ThemedButton className='w-full py-3 lg:py-2'>
+                    <p className='leading-none text-sm lg:text-base'>View Lobby</p>
+                </ThemedButton>
+            </Link>
+
             <Link className='text-xs lg:text-sm underline text-gray-500 underline-offset-4 mt-2 lg:mt-5 w-fit py-1' to={`/facilities/${facility?.id}`}>
                 View Facility
             </Link>
