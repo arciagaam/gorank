@@ -1,9 +1,10 @@
 import type { Game } from "~/schema/game"
 import ThemedBadge from "../badge/themed-badge"
-import { CalendarIcon, DotIcon, Link, Timer, User } from "lucide-react"
+import { CalendarIcon, DotIcon, Timer, User } from "lucide-react"
 import { formatDuration } from "~/lib/time"
 import PlayerModal from "../player-modal/player-modal"
 import ThemedButton from "../button/themed-button"
+import { Link } from "react-router"
 
 export const GameCard = ({ game }: { game: Game }) => {
     return (

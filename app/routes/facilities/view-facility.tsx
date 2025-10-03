@@ -12,6 +12,7 @@ import { StarRating } from '~/components/ui/star-rating';
 import { Star } from 'lucide-react';
 import { ReviewCard } from '~/components/reviews/ReviewCard';
 import { Button } from '~/components/ui/button';
+import Map from '~/components/map/Map';
 
 export default function ViewFacility() {
     const { id } = useParams();
@@ -134,7 +135,9 @@ export default function ViewFacility() {
                     <div className="flex flex-col gap-2">
                         <h2 className='text-base md:text-lg font-semibold'>Location</h2>
                         <p className='text-xs md:text-sm text-gray-500'>{facility?.location}</p>
-                        <div className="w-full min-h-[30vh] md:min-h-[50vh] rounded-2xl bg-gray-200"></div>
+                        <div className="w-full min-h-[30vh] md:min-h-[50vh] rounded-2xl bg-gray-200">
+                            <Map />
+                        </div>
                     </div>
 
 
