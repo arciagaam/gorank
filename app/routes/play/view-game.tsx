@@ -186,7 +186,7 @@ const JoinCard = ({ game, facility }: { game: Game, facility: Facility | undefin
                     <Link to={`/play/${game.id}/chat`} className='w-full'>
                         <ThemedButton variant='secondary' className='w-full py-3 lg:py-2'>
                             <MessageCircle size={16} className="lg:size-4" />
-                            <p className='leading-none text-sm lg:text-base'> Join Group Chat</p>
+                            <p className='leading-none text-sm'> Join Group Chat</p>
                         </ThemedButton>
                     </Link>
                 )
@@ -194,7 +194,7 @@ const JoinCard = ({ game, facility }: { game: Game, facility: Facility | undefin
 
             <Link to={`/play/${game.id}/lobby`} className='w-full'>
                 <ThemedButton className='w-full py-3 lg:py-2'>
-                    <p className='leading-none text-sm lg:text-base'>View Lobby</p>
+                    <p className='leading-none text-sm'>View Lobby</p>
                 </ThemedButton>
             </Link>
 
