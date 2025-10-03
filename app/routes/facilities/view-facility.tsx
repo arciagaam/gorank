@@ -5,11 +5,18 @@ import { Icon } from '~/components/ui/icon';
 import { twMerge } from 'tailwind-merge';
 import { useSportTheme } from '~/context/sport-theme-provider';
 import ThemedButton from '~/components/button/themed-button';
+import { getGamesBySportType } from '~/services/game';
+import { GameCard } from '~/components/game/GameCard';
+import { dummyReviews, getAverageRating, getRatingDistribution } from '~/dummy/reviews';
+import { StarRating } from '~/components/ui/star-rating';
+import { Star } from 'lucide-react';
+import { ReviewCard } from '~/components/reviews/ReviewCard';
+import { Button } from '~/components/ui/button';
 
 export default function ViewFacility() {
     const { id } = useParams();
     const [showAllAmenities, setShowAllAmenities] = useState(false);
-    const { sportStyles } = useSportTheme();
+    const { sportStyles, selectedSport } = useSportTheme();
 
 
     if (!id) {
@@ -21,6 +28,8 @@ export default function ViewFacility() {
     if (!facility) {
         return <div>Facility not found</div>
     }
+
+    const games = getGamesBySportType(selectedSport);
 
     return (
         <div className="flex flex-col w-full gap-6 md:gap-10 py-6 md:py-10 px-4 md:px-36 pb-52 lg:pb-10">
@@ -128,9 +137,31 @@ export default function ViewFacility() {
                         <div className="w-full min-h-[30vh] md:min-h-[50vh] rounded-2xl bg-gray-200"></div>
                     </div>
 
-                    
-                </div>
 
+                    <div className="flex flex-col gap-2">
+                        <h2 className='text-base md:text-lg font-semibold'>Games</h2>
+
+                        <div className="grid grid-cols-3 w-full gap-5">
+                            {
+                                games.slice(0, 3).map((game) => (
+                                    <GameCard key={game.id} game={game} />
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+
+                        <div className="flex flex-col">
+
+                            <h2 className='text-base md:text-lg font-semibold'>Ratings and Reviews</h2>
+                            <p className='text-xs md:text-sm text-gray-500'>How was the game? Rate the court now</p>
+                        </div>
+
+                        <FacilityReviews />
+                    </div>
+
+                </div>
                 <CreateCard id={id} />
 
             </div>
@@ -151,3 +182,158 @@ const CreateCard = ({ id }: { id: string }) => {
         </div>
     )
 }
+
+const FacilityReviews = () => {
+    const reviews = dummyReviews;
+    const averageRating = getAverageRating(reviews);
+    const ratingDistribution = getRatingDistribution(reviews);
+    const totalRatings = reviews.length;
+
+    const [userRating, setUserRating] = useState(0);
+    const [reviewsToShow, setReviewsToShow] = useState(2);
+
+    // const form = useForm<CreateReview>({
+    //     resolver: zodResolver(CreateReviewSchema),
+    //     defaultValues: {
+    //         rating: 0,
+    //         comment: '',
+    //     },
+    // });
+
+    // const onSubmit = (data: CreateReview) => {
+    //     console.log('Review submitted:', data);
+    //     form.reset();
+    //     setUserRating(0);
+    // };
+
+    // const handleRatingChange = (rating: number) => {
+    //     setUserRating(rating);
+    //     form.setValue('rating', rating);
+    // };
+
+    const showMoreReviews = () => {
+        setReviewsToShow(reviews.length);
+    };
+
+    const showLessReviews = () => {
+        setReviewsToShow(2);
+    };
+
+    if (reviews.length === 0) {
+        return (
+            <div className="flex flex-col gap-5 items-center my-10 w-full">
+                <p className='text-sm text-gray-500'>No Reviews Yet</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex gap-10 my-10 w-full">
+            {/* Left Side - Rating Summary */}
+            <div className="flex-1">
+                <div className="flex flex-col">
+                    <div className="text-6xl font-bold text-gray-900">{averageRating}</div>
+                    <StarRating rating={averageRating} size="lg" />
+                    <div className="text-sm text-gray-600">{totalRatings} ratings</div>
+
+                    {/* Rating Breakdown */}
+                    <div className="w-full space-y-2 mt-4">
+                        {[5, 4, 3, 2, 1].map((stars) => {
+                            const count = ratingDistribution[stars] || 0;
+                            const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+
+                            return (
+                                <div key={stars} className="flex items-center gap-6">
+
+                                    <div className="flex items-center gap-1">
+                                        <Star className='fill-yellow-400 text-yellow-400' />
+                                        <p className='text-sm font-medium'>{stars}</p>
+                                    </div>
+                                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                        <div
+                                            className="bg-gray-900 h-2 rounded-full transition-all duration-300"
+                                            style={{ width: `${percentage}%` }}
+                                        />
+                                    </div>
+                                    <span className="text-sm text-gray-600 w-8 whitespace-nowrap">({count})</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Side - Review Form and Existing Reviews */}
+            <div className="flex-1 space-y-6">
+                {/* Write a Review Form */}
+                {/* <div className="bg-white rounded-xl border border-gray-200 p-6">
+                    <h3 className="text-lg font-semibold mb-2">Write a Review</h3>
+                    <p className="text-sm text-gray-600 mb-4">Share your thoughts!</p>
+                    
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm">Rating:</span>
+                                <StarRating
+                                    rating={userRating}
+                                    interactive={true}
+                                    onRatingChange={handleRatingChange}
+                                />
+                            </div>
+
+                            <FormField
+                                control={form.control}
+                                name="comment"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Type something"
+                                                className="min-h-[100px] resize-none"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <ThemedButton type="submit" className="w-full">
+                                Submit
+                            </ThemedButton>
+                        </form>
+                    </Form>
+                </div> */}
+
+                {/* Existing Reviews */}
+                <div className="space-y-4">
+                    {reviews.slice(0, reviewsToShow).map((review) => (
+                        <ReviewCard key={review.id} review={review} />
+                    ))}
+
+                    {reviews.length > 2 && (
+                        <div className="text-center">
+                            {reviewsToShow < reviews.length ? (
+                                <Button
+                                    variant="outline"
+                                    onClick={showMoreReviews}
+                                    className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                                >
+                                    Show More Reviews ({reviews.length - reviewsToShow} more)
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="outline"
+                                    onClick={showLessReviews}
+                                    className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                                >
+                                    Show Less
+                                </Button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};

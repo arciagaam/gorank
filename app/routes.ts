@@ -16,6 +16,7 @@ const mainRoutes = [
 
     route("/play/:id", "routes/play/view-game.tsx"),
     route("/play/:id/chat", "routes/play/game-chat.tsx"),
+    route("/play/:id/lobby", "routes/play/lobby.tsx"),
 
     route("/facilities", "routes/facilities/facilities.tsx"),
     route("/facilities/:id", "routes/facilities/view-facility.tsx"),

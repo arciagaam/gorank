@@ -7,8 +7,8 @@ export const dummyFacilities: Facility[] = [
     sportTypes: ['basketball', 'volleyball'],
     amenities: [
       { name: 'Parking', icon: 'Car' },
-      { name: 'Shower facilities', icon: 'Shower' },
-      { name: 'Equipment rental', icon: 'Basketball' },
+      { name: 'Shower facilities', icon: 'ShowerHead' },
+      { name: 'Equipment rental', icon: 'Circle' },
       { name: 'Pro shop', icon: 'ShoppingBag' },
       { name: 'Café', icon: 'Coffee' }
     ],
@@ -31,12 +31,12 @@ export const dummyFacilities: Facility[] = [
     name: 'Riverside Tennis Club',
     sportTypes: ['tennis'],
     amenities: [
-      { name: 'Tennis courts (clay & hard)', icon: 'Tennis' },
+      { name: 'Tennis courts (clay & hard)', icon: 'Circle' },
       { name: 'Ball machine rental', icon: 'Bot' },
       { name: 'Pro lessons', icon: 'GraduationCap' },
       { name: 'Clubhouse', icon: 'Home' },
       { name: 'Restaurant', icon: 'Utensils' },
-      { name: 'Swimming pool', icon: 'Swimming' }
+      { name: 'Swimming pool', icon: 'Waves' }
     ],
     pictures: [
       'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800',
@@ -57,8 +57,8 @@ export const dummyFacilities: Facility[] = [
     name: 'Community Pickleball Center',
     sportTypes: ['pickleball'],
     amenities: [
-      { name: '8 indoor courts', icon: 'TableTennis' },
-      { name: 'Equipment rental', icon: 'TableTennis' },
+      { name: '8 indoor courts', icon: 'Circle' },
+      { name: 'Equipment rental', icon: 'Circle' },
       { name: 'Beginner lessons', icon: 'BookOpen' },
       { name: 'Social events', icon: 'PartyPopper' },
       { name: 'Refreshments', icon: 'GlassWater' }
@@ -82,7 +82,7 @@ export const dummyFacilities: Facility[] = [
     name: 'Elite Badminton Academy',
     sportTypes: ['badminton'],
     amenities: [
-      { name: '6 professional courts', icon: 'Badminton' },
+      { name: '6 professional courts', icon: 'Circle' },
       { name: 'Coaching programs', icon: 'Target' },
       { name: 'Tournament hosting', icon: 'Trophy' },
       { name: 'Equipment shop', icon: 'ShoppingCart' },
@@ -107,10 +107,10 @@ export const dummyFacilities: Facility[] = [
     name: 'Multi-Sport Arena',
     sportTypes: ['basketball', 'volleyball', 'pickleball', 'tennis', 'badminton'],
     amenities: [
-      { name: 'Multiple sport courts', icon: 'Stadium' },
-      { name: 'Olympic pool', icon: 'Swimming' },
+      { name: 'Multiple sport courts', icon: 'Building2' },
+      { name: 'Olympic pool', icon: 'Waves' },
       { name: 'Fitness center', icon: 'Dumbbell' },
-      { name: 'Spa services', icon: 'Spa' },
+      { name: 'Spa services', icon: 'Leaf' },
       { name: 'Restaurant', icon: 'Utensils' },
       { name: 'Hotel', icon: 'Building' }
     ],
@@ -158,9 +158,9 @@ export const dummyFacilities: Facility[] = [
     name: 'Parkside Recreation Center',
     sportTypes: ['pickleball', 'tennis', 'badminton'],
     amenities: [
-      { name: 'Outdoor courts', icon: 'Tree' },
+      { name: 'Outdoor courts', icon: 'TreePine' },
       { name: 'Indoor courts', icon: 'Home' },
-      { name: 'Picnic areas', icon: 'Basket' },
+      { name: 'Picnic areas', icon: 'ShoppingBasket' },
       { name: 'Walking trails', icon: 'Footprints' },
       { name: 'Children\'s playground', icon: 'Baby' }
     ],
@@ -183,7 +183,7 @@ export const dummyFacilities: Facility[] = [
     name: 'Professional Basketball Academy',
     sportTypes: ['basketball'],
     amenities: [
-      { name: 'Full-size courts', icon: 'Basketball' },
+      { name: 'Full-size courts', icon: 'Circle' },
       { name: 'Training equipment', icon: 'Dumbbell' },
       { name: 'Video analysis', icon: 'Video' },
       { name: 'Strength training', icon: 'Dumbbell' },
@@ -210,7 +210,7 @@ export const dummyFacilities: Facility[] = [
     sportTypes: ['volleyball'],
     amenities: [
       { name: 'Beach volleyball courts', icon: 'Umbrella' },
-      { name: 'Indoor courts', icon: 'Volleyball' },
+      { name: 'Indoor courts', icon: 'Circle' },
       { name: 'Sand training area', icon: 'Umbrella' },
       { name: 'Beach access', icon: 'Waves' },
       { name: 'Pro shop', icon: 'ShoppingBag' },
@@ -236,7 +236,7 @@ export const dummyFacilities: Facility[] = [
     sportTypes: ['tennis', 'badminton', 'pickleball'],
     amenities: [
       { name: 'All-weather courts', icon: 'Cloud' },
-      { name: 'Equipment rental', icon: 'Tennis' },
+      { name: 'Equipment rental', icon: 'Circle' },
       { name: 'Pro coaching', icon: 'GraduationCap' },
       { name: 'Tournament facilities', icon: 'Trophy' },
       { name: 'Social lounge', icon: 'Sofa' },
